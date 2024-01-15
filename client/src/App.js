@@ -2,6 +2,9 @@ import "./App.css";
 import Messenger from "./components/Messenger";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import AccountProvider from "./context/AccountProvider";
+import { createTheme, ThemeProvider, Typography } from '@mui/material';
+
+const theme = createTheme();
 
 function App() {
   const cliendId =
@@ -11,7 +14,9 @@ function App() {
   return (
     <GoogleOAuthProvider clientId={cliendId}>
       <AccountProvider>
+        <ThemeProvider theme={theme}>
         <Messenger />
+        </ThemeProvider>
       </AccountProvider>
     </GoogleOAuthProvider>
   );

@@ -1,8 +1,9 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { AccountContext } from '../../../context/AccountProvider'
 import { Box } from '@mui/material'
 import {Chat as MessageIcon,MoreVert,TimerOutlined} from '@mui/icons-material'
 import HeaderMenu from './HeaderMenu'
+import InfoDrawer from '../../drawers/InfoDrawer'
 
 
 //components
@@ -11,8 +12,15 @@ import HeaderMenu from './HeaderMenu'
 
 const Header = () => {
     const {account} = useContext(AccountContext)
+    const [openDrawer,setOpenDrawer]= useState(false)
+
+    const toggleDrawer=(e)=>{
+      setOpenDrawer(true)
+    }
+
   return (
-    <Box 
+    <>
+      <Box 
     height={'44px'} 
     bgcolor={"#ededed"}
     padding={'8px 16px'}
@@ -22,14 +30,18 @@ const Header = () => {
     >
         <img
         style={{height:'40px', width:'40px',borderRadius:'50%'}}
-         src={account.picture} alt="dp" />
+         src={account.picture} alt="dp" 
+          onClick={()=>toggleDrawer()}
+         />
 
          <Box display={'flex'}>
             <TimerOutlined sx={{  padding:'5px 10px'}}/>
             <MessageIcon  sx={{  padding:'5px'}}/>
-            <HeaderMenu  sx={{  padding:'5px'}} />
+            <HeaderMenu  sx={{  padding:'5px'}} openDrawer={openDrawer} setOpenDrawer={setOpenDrawer}  />
          </Box>
     </Box>
+    <InfoDrawer open={openDrawer} setOpen={setOpenDrawer} />
+    </>
   )
 }
 
