@@ -20,7 +20,6 @@ const HeaderMenu = ({openDrawer,setOpenDrawer}) => {
         open={open}
         anchorEl={open}
         onClose={handleClose}
-        getContentAnchorE1={null}
         anchorOrigin={{
           vertical: "bottom",
           horizontal: "center",

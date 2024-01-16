@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { AccountContext } from '../../../context/AccountProvider'
 import { Box } from '@mui/material'
-import {Chat as MessageIcon,MoreVert,TimerOutlined} from '@mui/icons-material'
+import {Chat as MessageIcon,TimerOutlined} from '@mui/icons-material'
 import HeaderMenu from './HeaderMenu'
 import InfoDrawer from '../../drawers/InfoDrawer'
 

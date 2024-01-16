@@ -1,4 +1,4 @@
-import { Box, Divider,ImageList, Typography } from "@mui/material";
+import { Box, Divider, Typography } from "@mui/material";
 import React from "react";
 import { emptyChatImage } from "../../../constant/data";
 
