@@ -1,12 +1,22 @@
 import { Box } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
+import { AccountContext } from "../../../context/AccountProvider";
+import { setConversation } from "../../../services/api";
+
 
 const Conversation = ({ user }) => {
+
+  const {setPerson,account} = useContext(AccountContext)
+
+  const getUser=async()=>{
+    setPerson(user)
+    await setConversation({senderId:account.sub,reciverId:user.sub})
+  }
+
   return (
     <Box
+    onClick={()=>getUser()}
       display={"flex"}
-      // justifyContent={'space-between'}
-      // alignItems={"center"}
       height={"45px"}
       padding={"13px 0"}
       sx={{ cursor: "pointer" }}

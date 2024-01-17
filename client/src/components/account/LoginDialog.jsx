@@ -15,7 +15,7 @@ const dialogStyle={
     maxWidth:'100%',
     maxHeight:'100%',
     boxShadow:'none',
-    overflow:'hidden'
+    // overflow:'hidden'
 }
 
 const LoginDialog = () => {
@@ -39,6 +39,7 @@ const LoginDialog = () => {
         PaperProps={{sx:dialogStyle}}
          open={true}
          hideBackdrop={true}
+         className='logDialog'
          >
          
             <Box
@@ -68,7 +69,7 @@ const LoginDialog = () => {
                 </Box>
 
                 <Box>
-                    <Box>
+                    <Box  className='logImg'>
                     <img style={{height:'264px',width:'264px'}} src={qrCodeImage} alt="" />
                     </Box>
                     <Box display={'flex'} alignItems={'center'} justifyContent={'center'}>

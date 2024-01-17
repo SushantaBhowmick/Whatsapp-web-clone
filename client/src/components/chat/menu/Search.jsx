@@ -4,7 +4,9 @@ import { Box, InputBase } from '@mui/material'
 
 
 const Search = ({setText}) => {
+
   return (
+    
    <Box
    bgcolor={"#fff"}
    height={"45px"}

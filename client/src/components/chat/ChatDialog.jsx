@@ -1,7 +1,10 @@
 import { Box, Dialog } from '@mui/material'
-import React from 'react'
+import React, { useContext } from 'react'
 import Menu from './menu/Menu'
 import EmptyChat from './chat/EmptyChat'
+import ChatBox from './chat/ChatBox';
+import { AccountContext } from '../../context/AccountProvider';
+
 
 
 const dialogStyle={
@@ -16,6 +19,9 @@ const dialogStyle={
 }
 
 const ChatDialog = () => {
+
+    const {person} = useContext(AccountContext)
+
   return (
    <Dialog
     PaperProps={{sx:dialogStyle}}
@@ -35,7 +41,9 @@ const ChatDialog = () => {
         <Box
         borderLeft={'1px solid rgba(0, 0, 0, 0.14)'}
         >
-            <EmptyChat />
+            
+            
+            {Object.keys(person).length?<ChatBox/>:<EmptyChat />  }
         </Box>
     </Box>
    </Dialog>

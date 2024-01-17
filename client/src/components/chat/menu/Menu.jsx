@@ -15,7 +15,7 @@ const Menu = () => {
     <Box >
         <Header />
         <Search setText={setText}  />
-        <Conversations />
+        <Conversations text={text} />
     </Box>
   )
 }

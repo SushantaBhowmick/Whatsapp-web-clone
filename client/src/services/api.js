@@ -25,3 +25,16 @@ export const getUser=async()=>{
         console.log("Error while addUser api",error)
     }
 }
+
+export const setConversation=async(data)=>{
+    const headers = {
+        'Content-Type':'application/json'
+    }
+
+    try {
+       const response = await axios.post(`${base_url}/api/conversation/add`,data,{headers})
+       return response.data
+    } catch (error) {
+        console.log("Error while setConversation api",error)
+    }
+}
