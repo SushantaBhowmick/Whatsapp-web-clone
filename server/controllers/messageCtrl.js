@@ -20,3 +20,19 @@ export const newMessage=async(req,res)=>{
         });
       }
 }
+
+export const getMessage=async(req,res)=>{
+    try {
+       let messages = await Message.find({conversationId:req.params.id})
+        res.status(200).json({
+          success: true,
+          messages
+        });
+    
+      } catch (error) {
+        res.status(500).json({
+          success: false,
+          msg: "Internal Server Error",
+        });
+      }
+}

@@ -39,7 +39,6 @@ export const getConversation = async (req, res) => {
     const reciverId = req.body.reciverId;
 
    let conversation = await Conversation.findOne({members:{$all: [senderId, reciverId] }})
-console.log(conversation)
     res.status(200).json({
       success: true,
       conversation,
