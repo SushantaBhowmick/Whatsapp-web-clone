@@ -48,7 +48,9 @@ const LoginDialog = () => {
             justifyContent={'space-evenly'}
             paddingTop={'66px'}
             >
-                <Box>
+                <Box
+                className='loginTypo'
+                >
                     <Typography fontSize={30} color={'#525252'} fontWeight={200}
                     fontFamily={'inherit'} marginBottom={'25px'}
                     >Use WhatsApp on your computer</Typography>

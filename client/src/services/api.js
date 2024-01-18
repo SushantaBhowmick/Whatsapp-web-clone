@@ -38,3 +38,29 @@ export const setConversation=async(data)=>{
         console.log("Error while setConversation api",error)
     }
 }
+
+export const getConversation=async(data)=>{
+    const headers = {
+        'Content-Type':'application/json'
+    }
+
+    try {
+       const response = await axios.post(`${base_url}/api/conversation`,data,{headers})
+       return response.data
+    } catch (error) {
+        console.log("Error while getConversation api",error)
+    }
+}
+
+export const newMessage=async(data)=>{
+    const headers = {
+        'Content-Type':'application/json'
+    }
+
+    try {
+       const response = await axios.post(`${base_url}/api/add/message`,data,{headers})
+       return response.data
+    } catch (error) {
+        console.log("Error while newMessage api",error)
+    }
+}

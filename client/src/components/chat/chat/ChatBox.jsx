@@ -1,33 +1,38 @@
-import { Box } from '@mui/material'
-import React, { useContext } from 'react'
-import ChatHeader from './ChatHeader'
-import Messages from './Messages'
-import Footer from './Footer'
-import { AccountContext } from '../../../context/AccountProvider'
-
+import { Box } from "@mui/material";
+import React, { useContext, useEffect, useState } from "react";
+import ChatHeader from "./ChatHeader";
+import Messages from "./Messages";
+import { AccountContext } from "../../../context/AccountProvider";
+import { getConversation } from "../../../services/api";
 
 const ChatBox = () => {
+  const { person,account } = useContext(AccountContext);
+  const [conversation,setConversation]=useState({})
 
-    const {person} = useContext(AccountContext)
+  useEffect(()=>{
+    const getConversationDetails=async()=>{
+      let data = await getConversation({
+        senderId:account.sub,
+      reciverId:person.sub,
+      })
+      setConversation(data.conversation)
+    }
+    getConversationDetails()
+  },[person.sub])
 
   return (
     <Box>
-
-    <Box>
+      <Box>
         <ChatHeader person={person} />
-    </Box>
-    <Box>
-        <Messages  person={person} />
-    </Box>
-    <Box
-    minWidth={"69vw"}
-    overflow={'auto'}
-    >
+      </Box>
+      <Box>
+        <Messages person={person} conversation={conversation} />
+      </Box>
+      {/* <Box minWidth={"69vw"} overflow={"auto"}>
         <Footer />
+      </Box> */}
     </Box>
+  );
+};
 
-    </Box>
-  )
-}
-
-export default ChatBox
+export default ChatBox;

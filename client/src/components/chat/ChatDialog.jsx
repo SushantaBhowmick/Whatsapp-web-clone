@@ -40,6 +40,7 @@ const ChatDialog = () => {
     {/* Right */}
         <Box
         borderLeft={'1px solid rgba(0, 0, 0, 0.14)'}
+        minWidth={'400px'}
         >
             
             
