@@ -2,6 +2,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import connectDB from './database/db.js';
 import cors from 'cors';
+import morgan from 'morgan'
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ connectDB()
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
 app.use(cors())
+app.use(morgan('dev'))
 
 //Routes
 import userRoute from './routes/route.js'

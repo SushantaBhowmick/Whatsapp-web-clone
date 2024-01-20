@@ -10,6 +10,7 @@ const Messages = ({ person, conversation }) => {
   const { account } = useContext(AccountContext);
   const [text, setText] = useState("");
   const [newMessageFlag, setNewMessageFlag] = useState(false);
+  const [file, setFile] = useState();
   
   const bgImage ='url("https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png")';
 
@@ -52,6 +53,8 @@ const Messages = ({ person, conversation }) => {
           setText={setText}
           text={text}
           conversation={conversation}
+          file={file}
+          setFile={setFile}
         />
       </Box>
     </Box>

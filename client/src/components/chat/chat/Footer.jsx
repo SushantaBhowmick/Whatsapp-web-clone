@@ -1,10 +1,10 @@
 import { AttachFile, EmojiEmotionsOutlined,Mic, Send } from '@mui/icons-material'
 import { Box, InputBase } from '@mui/material'
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { AccountContext } from '../../../context/AccountProvider'
-import { newMessage } from '../../../services/api'
+import { newMessage, uploadFile } from '../../../services/api'
 
-const Footer = ({sendText,setText,text,conversation}) => {
+const Footer = ({sendText,setText,text,conversation,file,setFile}) => {
 
 
   const {account,person} = useContext(AccountContext)
@@ -19,8 +19,27 @@ const Footer = ({sendText,setText,text,conversation}) => {
       text:text
     }
     await newMessage(message)
-    setText('')
+    setText('');
   }
+
+  const onfileChange=(e)=>{
+    setFile(e.target.files[0])
+    setText(e.target.files[0].name);
+  }
+
+  useEffect(()=>{
+   const getImage=async()=>{
+    if(file){
+      const data = new FormData();
+      data.append("name",file.name)
+      data.append("file",file);
+
+      await uploadFile(data)
+    }
+   }
+   getImage()
+  },[])
+
 
   return (
     <Box
@@ -31,16 +50,23 @@ const Footer = ({sendText,setText,text,conversation}) => {
     width={'100%'}
     padding={'0 15px'}
     >
-           <Box marginRight={"10px"} display={'flex'} gap={"10px"}>
-           <EmojiEmotionsOutlined sx={{color:"gray"}}/>
-            <AttachFile sx={{transform:'rotate(40deg)',color:"gray"}}/>
+           <Box marginRight={"10px"} display={'flex'} gap={"10px"} >
+           <EmojiEmotionsOutlined sx={{color:"gray",cursor:'pointer',":hover":{color:'black'}}}/>
+           <label htmlFor="fileInput">
+           <AttachFile sx={{transform:'rotate(40deg)',color:"gray",cursor:'pointer',":hover":{color:'black'}}}/>
+           </label>
+            <input type="file"
+            id='fileInput'
+            style={{display:'none'}}
+            onChange={(e)=>onfileChange(e)}
+             />
            </Box>
             <Box
              sx={{
                     borderRadius:"18px",
                     bgcolor:"#FFFFFF",
                     // width:"calc(94%-100px)"
-                    width:'58vw'  , overflowX:'auto'             }}
+                    width:'58vw'  , overflowX:'auto'}}
             >
                 <InputBase
                sx={{
@@ -58,7 +84,7 @@ const Footer = ({sendText,setText,text,conversation}) => {
             </Box>
            <Box marginLeft={"10px"} display={'flex'} gap={"10px"}>
            <Mic sx={{color:"gray"}} />
-           <Send  onClick={handlesubmit} sx={{color:"gray",cursor:'pointer',marginRight:"20px"}}/>
+           <Send  onClick={handlesubmit} sx={{color:"gray",cursor:'pointer',marginRight:"20px",":hover":{color:'black'}}}/>
            </Box>
     </Box>
   )
