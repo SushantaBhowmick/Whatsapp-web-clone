@@ -13,6 +13,18 @@
   }
 }
 
+::-webkit-scrollbar{
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0,0,0,.2);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-track {
+  background: hsla(0,0%,100%,.1);
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -55,6 +67,7 @@
   .emtImg{
     margin-top: 170px;
   }
+ 
 }
 
 @media screen and (max-width:900px) {
@@ -70,6 +83,12 @@
     padding: 0 20px;
     margin-top: 0;
   }
+  .sendImg{
+    width: 200px !important;
+    display: block;
+    /* height: 100px ; */
+    
+}
 }
 
 @media screen and (max-width:600px) {
@@ -93,4 +112,6 @@
   .logImg{
     display: none;
   }
+
+ 
 }

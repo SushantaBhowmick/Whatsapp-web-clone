@@ -1,4 +1,27 @@
+export const downloadMedia=async(e,origin)=>{
+  e.preventDefault();
+  try {
+    fetch(downloadMedia)
+    .then(resp=>resp.blob())
+    .then(blob=>{
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a')
+      a.style.display='none'
+      a.href=url;
 
+      const nameSplit=origin.split("/")
+      const duplicateName = nameSplit.pop();
+
+      a.download=""+duplicateName + "";
+      document.body.appendChild(a)
+      a.click();
+      window.URL.revokeObjectURL(url)
+    })
+    .catch((error) => console.log('Error while downloading the image ', error))
+  } catch (error) {
+    console.log('Error while downloading the image ', error);
+  }
+}
 
 export const formatDate = (date) => {
   const hours = new Date(date).getHours();

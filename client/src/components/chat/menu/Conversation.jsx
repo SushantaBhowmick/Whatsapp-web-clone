@@ -1,21 +1,34 @@
-import { Box } from "@mui/material";
-import React, { useContext } from "react";
+import { Box, Typography } from "@mui/material";
+import React, { useContext, useEffect, useState } from "react";
 import { AccountContext } from "../../../context/AccountProvider";
-import { setConversation } from "../../../services/api";
-
+import { getConversation, setConversation } from "../../../services/api";
+import { formatDate } from "../../../utils/commonUtil";
 
 const Conversation = ({ user }) => {
+  const { setPerson, account, newMessageFlag } = useContext(AccountContext);
+  const [message, setMessage] = useState({});
 
-  const {setPerson,account} = useContext(AccountContext)
-
-  const getUser=async()=>{
-    setPerson(user)
-    await setConversation({senderId:account.sub,reciverId:user.sub})
-  }
+  const getUser = async () => {
+    setPerson(user);
+    await setConversation({ senderId: account.sub, reciverId: user.sub });
+  };
+  useEffect(() => {
+    const getConversationMessage = async () => {
+      const data = await getConversation({
+        senderId: account.sub,
+        reciverId: user.sub,
+      });
+      setMessage({
+        text: data?.conversation.message,
+        timestamp: data?.conversation.updatedAt,
+      });
+    };
+    getConversationMessage();
+  }, [newMessageFlag, account.sub, user.sub]);
 
   return (
     <Box
-    onClick={()=>getUser()}
+      onClick={() => getUser()}
       display={"flex"}
       height={"45px"}
       padding={"13px 0"}
@@ -34,9 +47,28 @@ const Conversation = ({ user }) => {
         />
       </Box>
 
-      <Box>
-        <Box>{user.name}</Box>
+      <Box width={'100%'}>
+       <Box display={'flex'}>
+       <Typography>{user.name}</Typography>
+        {message?.text && (
+          <Typography
+          fontSize={'12px'}
+          marginLeft={'auto'}
+          color={'#00000099'}
+          marginRight={'20px'}
+          >{formatDate(message?.timestamp)}</Typography>
+        )}
+       </Box>
+       <Box>
+        <Typography
+        color={'rgba(0, 0, 0, 0.4)'}
+        fontSize={'14px'}
+        >
+          {message?.text?.includes("localhost") ? "media" : message.text}
+        </Typography>
       </Box>
+      </Box>
+    
     </Box>
   );
 };

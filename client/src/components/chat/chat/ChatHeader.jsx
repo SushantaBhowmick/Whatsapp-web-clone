@@ -1,8 +1,12 @@
 import { Call, MoreVert, Search, VideoCall } from "@mui/icons-material";
 import { Box, Typography } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
+import { AccountContext } from "../../../context/AccountProvider";
 
 const ChatHeader = ({person}) => {
+
+  const {activeUsers} =useContext(AccountContext)
+
   return (
     <Box
       display={"flex"}
@@ -26,7 +30,7 @@ const ChatHeader = ({person}) => {
         <Box marginLeft={"15px"}>
           <Typography>{person.name}</Typography>
           <Typography fontSize={"15px"} color={"rgb(0,0,0,0.6)"}>
-            online
+            {activeUsers?.find(user=>user.sub===person.sub)?'Online':'Ofline'}
           </Typography>
         </Box>
       </Box>

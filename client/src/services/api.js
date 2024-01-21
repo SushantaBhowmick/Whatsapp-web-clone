@@ -80,9 +80,9 @@ export const getMessages=async(id)=>{
 
 export const uploadFile=async(data)=>{
     const headers = {
-        'Content-Type':'application/json'
+        'Content-Type':'multipart/form-data'
     }
-
+console.log(data)
     try {
        const response = await axios.post(`${base_url}/api/file/upload`,data,{headers})
        return response.data

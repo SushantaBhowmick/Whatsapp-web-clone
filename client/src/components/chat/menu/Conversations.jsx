@@ -6,7 +6,7 @@ import { AccountContext } from "../../../context/AccountProvider";
 
 const Conversations = ({ text }) => {
   const [user, setUser] = useState([]);
-  const { account } = useContext(AccountContext);
+  const { account,socket,setActiveUsers } = useContext(AccountContext);
 
   useEffect(() => {
     const getData = async () => {
@@ -19,6 +19,14 @@ const Conversations = ({ text }) => {
 
     getData();
   }, [text]);
+
+
+  useEffect(()=>{
+    socket.current.emit('addUser',account);
+    socket.current.on('getUsers',users=>{
+      setActiveUsers(users)
+    })
+  },[account,setActiveUsers,socket])
 
   return (
     <Box overflow={"overlay"} height={"81vh"}>
