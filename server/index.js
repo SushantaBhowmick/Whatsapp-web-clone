@@ -19,12 +19,16 @@ app.use(express.urlencoded({extended:true}))
 app.use(cors())
 app.use(morgan('dev'))
 
+
+app.get('/test',(req,res)=>{
+    res.send('Welcome to Whatsapp Clone')
+})
 //Routes
 import userRoute from './routes/route.js'
 app.use('/api',userRoute)
 
-app.get('/',(req,res)=>{
-    res.send("Welcome back")
+app.get('/test',(req,res)=>{
+    res.send("Welcome to Whatsapp Web")
 })
 
 app.listen(PORT,()=>{
