@@ -64,7 +64,7 @@ const Conversation = ({ user }) => {
         color={'rgba(0, 0, 0, 0.4)'}
         fontSize={'14px'}
         >
-          {message?.text?.includes("localhost") ? "media" : message.text}
+          {message?.text?.includes("production") ? "media" : message.text}
         </Typography>
       </Box>
       </Box>

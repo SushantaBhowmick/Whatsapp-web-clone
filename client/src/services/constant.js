@@ -1,3 +1,3 @@
 
-const base_url = 'http://localhost:4000';
+const base_url = 'https://whatsapp-web-backend-fnpu.onrender.com';
 export default base_url
