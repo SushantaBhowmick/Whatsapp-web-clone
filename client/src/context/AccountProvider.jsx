@@ -13,7 +13,7 @@ const AccountProvider=({children})=>{
     const socket = useRef()
 
     useEffect(()=>{
-        socket.current=io('ws://localhost:5000')
+        socket.current=io('https://whatsapp-web-clone-socket.onrender.com/')
     },[])
 
 
